@@ -1,38 +1,53 @@
 package taller7_antoniooj1;
 import java.util.ArrayList;
+/**
+Se desea desarrollar un sistema de nómina para los trabajadores de una empresa. 
+* Los datos personales de los trabajadores son nombre y apellidos, dirección y DNI. 
+* Además, existen diferentes tipos de trabajadores:
+
+Fijos Mensuales: que cobran una cantidad fija al mes.
+Comisionistas: cobran un porcentaje fijo por las ventas que han realizado
+Por Horas: cobran un precio por cada una de las horas que han realizado durante
+* el mes. El precio es fijo para las primeras 40 horas y es otro para las horas
+* realizadas a partir de la 40 hora mensual.
+Jefe: cobra un sueldo fijo (no hay que calcularlo). Cada empleado tiene
+* obligatoriamente un jefe (exceptuando los jefes que no tienen ninguno). 
+* El programa debe permitir dar de alta a trabajadores, así como fijar horas 
+* o ventas realizadas e imprimir la nómina correspondiente al final de mes.
+
+ * @author Antonio Ojeda
+ */
 
 public class Problema4_Nomina {
     public static void main(String[] args) {
         ArrayList<Trabajador> listaEmpleados = new ArrayList<>();
         Nomina nomina = new Nomina(listaEmpleados);
-        Jefe trab1 = new Jefe("Pepe", "Papas", 
-                        "av Quito", "123");
-        Jefe trab2 = new Jefe("Juan", "Nito", 
-                        "av Loja", "456");
-        Jefe trab3 = new Jefe("Pedro", "Yepez", 
-                        "av Conca", "789");
-        listaEmpleados.add(trab1);
-        listaEmpleados.add(trab2);
-        listaEmpleados.add(trab3);
-        FijoMensual fm1 = new FijoMensual(trab1, "Jose", "Lopez", 
-                                            "clle Zamora", "987");
-        listaEmpleados.add(fm1);
-        Comisionista com1 = new Comisionista(trab2, 5, "Espinosa", "Ramos", 
-                                                    "barrio Ventilar", "321");
+        Jefe jefe1 = new Jefe("Rene", "Morales", "Av. Amazonas", "001");
+        Jefe jefe2 = new Jefe("Luis", "Quito", "Av. El Inca", "002");
+        Jefe jefe3 = new Jefe("Maria", "Valdivieso", "Av. República", "003");
+        listaEmpleados.add(jefe1);
+        listaEmpleados.add(jefe2);
+        listaEmpleados.add(jefe3);
+
+        FijoMensual fijo1 = new FijoMensual(jefe1, "Carlos", "Correa", "Calle Sucre", "101");
+        listaEmpleados.add(fijo1);
+
+        Comisionista com1 = new Comisionista(jefe2, 8, "Daniela", "Jaramillo", "Barrio El Bosque", "202");
         listaEmpleados.add(com1);
-        PorHoras ph1 = new PorHoras(trab3, 45, "Zota", "Zeto", 
-                                                    "conjunto Rosales", "951");
+
+        PorHoras ph1 = new PorHoras(jefe3, 50, "Esteban", "Chamba", "Conjunto Los Alamos", "303");
         listaEmpleados.add(ph1);
-        
-        for(Trabajador trab : nomina.listaEmpleados){
+        listaEmpleados.add(ph1);
+
+        for (Trabajador trab : nomina.listaEmpleados) {
             trab.calcularSueldo();
         }
-        
+
         nomina.CalcularHoras();
         nomina.CalcularVentas();
         System.out.println(nomina.dibujarnomina());
         nomina.despedir("456");
-        System.out.println("\n\n========================!!!!!!!! DNI: 456 - ESTAS DESPEDIDO!!!!!!!!========================\n\n");
+        System.out.println("\n\n================!!!!! DNI: 456 - ESTAS DESPEDIDO!!!!!================\n\n");
         System.out.println(nomina.dibujarnomina());
     }
 }
