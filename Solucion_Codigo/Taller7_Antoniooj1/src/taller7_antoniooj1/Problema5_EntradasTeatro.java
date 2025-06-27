@@ -60,7 +60,9 @@ public class Problema5_EntradasTeatro {
         Zona lateral = new Zona( 15.5, 10,"Lateral", 100);
         listaZonas.add(lateral);
 
-        int sigue = 0, precio = 0, id = 0;                                 
+        int sigue = 0;
+        int precio = 0;
+        int id = 0;
         Scanner put = new Scanner(System.in);
         ArrayList<Entrada> compradas = new ArrayList<>();
         while (sigue == 0) {
